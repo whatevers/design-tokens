@@ -256,6 +256,25 @@ export const GeneralSettings = () => {
                   'If enabled, the exported json will include the mode of the variables in the token name path, if more than 1 mode exists'
               }}
             />
+
+            <p>
+              <Checkbox
+                label="…even for single-mode collections"
+                type="switch"
+                checked={settings.modeInTokenNameForSingleMode}
+                onChange={(value) =>
+                  updateSettings((draft) => {
+                    draft.modeInTokenNameForSingleMode = value
+                  })
+                }
+                info={{
+                  width: 240,
+                  label:
+                    'If enabled, include the mode even if there is just one mode in a collection'
+                }}
+                isDisabled={!settings.modeInTokenName}
+              />
+            </p>
           </div>
           <div>
             <Checkbox

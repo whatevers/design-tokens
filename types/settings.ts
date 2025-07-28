@@ -28,6 +28,7 @@ export type Settings = {
   prefixInName: boolean,
   modeInTokenValue: boolean,
   modeInTokenName: boolean,
+  modeInTokenNameForSingleMode: boolean,
   resolveSameCollectionOrModeReference: boolean,
   prefix: {
     color: string,

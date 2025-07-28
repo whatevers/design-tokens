@@ -120,9 +120,9 @@ export const getVariables = async (figma: PluginAPI, settings: Settings) => {
 
     // return each mode value as a separate variable
     return await Promise.all(Object.entries(variable.valuesByMode)?.map(async ([id, value]) => {
-      // Only add mode if there's more than one
-      // and if modeInTokenName is set to true
-      const addModeInTokenName = settings.modeInTokenName && modes.length > 1
+      // Only add mode if modeInTokenName is set to true
+      // and if there's more than one mode OR modeInTokenNameForSingleMode is set to true
+      const addModeInTokenName = settings.modeInTokenName && (modes.length > 1 || settings.modeInTokenNameForSingleMode)
       const mode = modes.find(({ modeId }) => modeId === id)
       const variableName = `${collection}/${variable.name}`
       const variableNameWithMode = `${collection}/${mode.name}/${variable.name}`

@@ -50,6 +50,7 @@ describe('prepareExport', () => {
     prefixInName: false,
     modeInTokenValue: false,
     modeInTokenName: false,
+    modeInTokenNameForSingleMode: false,
     resolveSameCollectionOrModeReference: false,
     prefix: {
       color: '',
