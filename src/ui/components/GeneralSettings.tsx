@@ -293,6 +293,26 @@ export const GeneralSettings = () => {
                   'If enabled, the exported json will include the mode of the variables in the token value'
               }}
             />
+
+            <p>
+              <Checkbox
+                label="Don't be stupid"
+                type="switch"
+                checked={settings.modeInTokenValueCorrectly}
+                onChange={(value) =>
+                  updateSettings((draft) => {
+                    draft.modeInTokenValueCorrectly = value
+                  })
+                }
+                info={{
+                  width: 240,
+                  label:
+                    'Don’t assume the value’s mode is the same as the variables. In other words, resolve the actual value of the variable for the current mode.'
+                }}
+                isDisabled={!settings.modeInTokenValue}
+                
+              />
+            </p>
           </div>
         </div>
       </div>
