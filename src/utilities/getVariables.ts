@@ -13,12 +13,19 @@ import deepMerge from '@utils/deepMerge'
 const extractVariable = async (
   variable: Variable & { aliasSameMode?: boolean },
   value: any, // eslint-disable-line @typescript-eslint/no-explicit-any
-  mode: { modeId: string; name: string }
+  mode: { modeId: string; name: string },
+  settings // <-- pass settings object
 ) => {
   let category: tokenCategoryType = 'color'
   let values = {}
   if (value.type === 'VARIABLE_ALIAS') {
-    return await handleVariableAlias(variable, value, mode)
+    return await handleVariableAlias(
+      variable,
+      value,
+      mode,
+      undefined, // TODO: Should this remain undefined?
+      settings.modeInTokenValueCorrectly
+    )
   }
   switch (variable.resolvedType) {
     case 'COLOR':
@@ -53,7 +60,7 @@ const extractVariable = async (
   }
 }
 
-const detectVariableReferencesInCollection = (collection, variable) => {
+const detectVariableReferencesInCollection = (collection, variable, settings) => {
   let tmpVariable = {}
   if (variable) {
     collection?.modes?.forEach((mode) => {
@@ -77,7 +84,8 @@ const detectVariableReferencesInCollection = (collection, variable) => {
             variable,
             modeValue,
             mode,
-            aliasSameMode
+            aliasSameMode,
+            settings.modeInTokenValueCorrectly
           )
         }
       })
@@ -114,7 +122,8 @@ export const getVariables = async (figma: PluginAPI, settings: Settings) => {
     if (settings.resolveSameCollectionOrModeReference) {
       variable = detectVariableReferencesInCollection(
         collections[variableCollectionId],
-        variable
+        variable,
+        settings // <-- pass settings object
       )
     }
 
@@ -126,7 +135,7 @@ export const getVariables = async (figma: PluginAPI, settings: Settings) => {
       const mode = modes.find(({ modeId }) => modeId === id)
       const variableName = `${collection}/${variable.name}`
       const variableNameWithMode = `${collection}/${mode.name}/${variable.name}`
-      const extractedVariable = await extractVariable(variable, value, mode)
+      const extractedVariable = await extractVariable(variable, value, mode, settings)
 
       return {
         ...extractedVariable,

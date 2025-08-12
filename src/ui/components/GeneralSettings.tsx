@@ -257,7 +257,7 @@ export const GeneralSettings = () => {
               }}
             />
 
-            <p>
+            <p style={{ marginTop: '0.5em' }}>
               <Checkbox
                 label="…even for single-mode collections"
                 type="switch"
@@ -294,9 +294,9 @@ export const GeneralSettings = () => {
               }}
             />
 
-            <p>
+            <p style={{ marginTop: '0.5em' }}>
               <Checkbox
-                label="Don't be stupid"
+                label="Correct cross-references to non-matching modes"
                 type="switch"
                 checked={settings.modeInTokenValueCorrectly}
                 onChange={(value) =>
@@ -305,9 +305,10 @@ export const GeneralSettings = () => {
                   })
                 }
                 info={{
-                  width: 240,
+                  width: 220,
+                  position: 'left',
                   label:
-                    'Don’t assume the value’s mode is the same as the variables. In other words, resolve the actual value of the variable for the current mode.'
+                    'Use the value’s mode, instead of name’s mode.'
                 }}
                 isDisabled={!settings.modeInTokenValue}
                 
