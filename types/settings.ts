@@ -27,7 +27,9 @@ export type Settings = {
   keyInName: boolean,
   prefixInName: boolean,
   modeInTokenValue: boolean,
+  modeInTokenValueCorrectly: boolean,
   modeInTokenName: boolean,
+  modeInTokenNameForSingleMode: boolean,
   resolveSameCollectionOrModeReference: boolean,
   prefix: {
     color: string,

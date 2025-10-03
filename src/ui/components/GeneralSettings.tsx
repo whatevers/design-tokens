@@ -256,6 +256,25 @@ export const GeneralSettings = () => {
                   'If enabled, the exported json will include the mode of the variables in the token name path, if more than 1 mode exists'
               }}
             />
+
+            <p style={{ marginTop: '0.5em' }}>
+              <Checkbox
+                label="…even for single-mode collections"
+                type="switch"
+                checked={settings.modeInTokenNameForSingleMode}
+                onChange={(value) =>
+                  updateSettings((draft) => {
+                    draft.modeInTokenNameForSingleMode = value
+                  })
+                }
+                info={{
+                  width: 240,
+                  label:
+                    'If enabled, include the mode even if there is just one mode in a collection'
+                }}
+                isDisabled={!settings.modeInTokenName}
+              />
+            </p>
           </div>
           <div>
             <Checkbox
@@ -274,6 +293,27 @@ export const GeneralSettings = () => {
                   'If enabled, the exported json will include the mode of the variables in the token value'
               }}
             />
+
+            <p style={{ marginTop: '0.5em' }}>
+              <Checkbox
+                label="Correct cross-references to non-matching modes"
+                type="switch"
+                checked={settings.modeInTokenValueCorrectly}
+                onChange={(value) =>
+                  updateSettings((draft) => {
+                    draft.modeInTokenValueCorrectly = value
+                  })
+                }
+                info={{
+                  width: 220,
+                  position: 'left',
+                  label:
+                    'Use the value’s mode, instead of name’s mode.'
+                }}
+                isDisabled={!settings.modeInTokenValue}
+                
+              />
+            </p>
           </div>
         </div>
       </div>

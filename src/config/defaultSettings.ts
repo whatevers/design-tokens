@@ -21,7 +21,9 @@ export const defaultSettings: Settings = {
   keyInName: false,
   prefixInName: true,
   modeInTokenValue: false,
+  modeInTokenValueCorrectly: false,
   modeInTokenName: false,
+  modeInTokenNameForSingleMode: true,
   resolveSameCollectionOrModeReference: false,
   prefix: {
     color: 'color',

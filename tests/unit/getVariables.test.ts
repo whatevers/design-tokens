@@ -41,7 +41,9 @@ describe('getVariables', () => {
     keyInName: false,
     prefixInName: true,
     modeInTokenValue: true,
+    modeInTokenValueCorrectly: false,
     modeInTokenName: true,
+    modeInTokenNameForSingleMode: true,
     resolveSameCollectionOrModeReference: false,
     prefix: {
       color: 'color',
